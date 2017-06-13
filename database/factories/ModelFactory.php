@@ -22,3 +22,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Key::class, function (Faker\Generator $faker) {
+
+    return [
+        'key' => $faker->unique()->word
+    ];
+});
+
+$factory->define(App\Location::class, function (Faker\Generator $faker) {
+
+    return [
+        'location' => $faker->unique()->city
+    ];
+});
