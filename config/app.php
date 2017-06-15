@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Spatie\Permission\PermissionServiceProvider::class,
-
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class
     ],
 
     /*
@@ -228,6 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class
     ],
 
 ];

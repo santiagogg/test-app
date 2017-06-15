@@ -16,8 +16,20 @@ class Video extends Model
     {
         return $this->hasMany('App\Location');
     }
+    
     public function likes()
     {
-        return $this->belongsToMany('App\User','likes');
+        return $this->belongsToMany('App\User', 'likes');
+    }
+
+    /**
+     * Todo: Decide How we are going to handle the File Info.
+     */
+    public function updateFileInfo()
+    {
+        $this->duration = 0;
+        $this->file_size = 0;
+        $this->video_format = 0;
+        $this->bit_rate = 0;
     }
 }
