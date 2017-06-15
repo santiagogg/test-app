@@ -46,14 +46,19 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //Todo: Add Validation
-        $video = new Video;
+        //Todo: Confirm Video Type allowed
+        $this->validate($request, [
+            'title' => 'required',
+            'file' => 'required | mimetypes:video/x-m4v'
+        ]);
+        $file = $request->file('file')->store('video-files');
 
-        if ($request->hasFile('file')) {
-            $video->file = $request->file('file')->store('video-files');
-        }
+
+        $video = new Video;
+        $video->file = $file;
         $video->title = $request->get('title');
 
+        //Todo: This could be remove
         $video->updateFileInfo();
         $video->save();
 
@@ -87,13 +92,16 @@ class VideoController extends Controller
      */
     public function update(Request $request, Video $video)
     {
-        //Todo: Add Validation
+        //Todo: Confirm Video Type allowed
+        $this->validate($request, [
+            'title' => 'required',
+            'file' => 'required | mimetypes:video/x-m4v'
+        ]);
 
-        if ($request->hasFile('file')) {
-            $video->file = $request->file('file')->store('video-files');
-        }
+        $video->file = $request->file('file')->store('video-files');
         $video->title = $request->get('title');
 
+        //Todo: This could be remove
         $video->updateFileInfo();
         $video->save();
 
