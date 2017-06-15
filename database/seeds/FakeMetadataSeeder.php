@@ -12,6 +12,6 @@ class FakeMetadataSeeder extends Seeder
     public function run()
     {
         factory(App\Location::class, 10)->create();
-        factory(App\Key::class, 10)->create();
+        factory(App\Keyword::class, 10)->create();
     }
 }

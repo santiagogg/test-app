@@ -23,7 +23,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Key::class, function (Faker\Generator $faker) {
+$factory->define(App\Keyword::class, function (Faker\Generator $faker) {
 
     return [
         'key' => $faker->unique()->word
