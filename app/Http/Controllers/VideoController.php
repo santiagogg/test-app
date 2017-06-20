@@ -23,6 +23,17 @@ class VideoController extends Controller
     }
 
     /**
+     * Show the profile for the given user.
+     *
+     * @param  Video  $video
+     * @return Response
+     */
+    public function show(Video $video)
+    {
+        return view('videos.show', compact('video'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param FormBuilder $formBuilder
@@ -49,9 +60,9 @@ class VideoController extends Controller
         //Todo: Confirm Video Type allowed
         $this->validate($request, [
             'title' => 'required',
-            'file' => 'required | mimetypes:video/x-m4v'
+            'file' => 'required | mimetypes:video/mp4'
         ]);
-        $file = $request->file('file')->store('video-files');
+        $file = $request->file('file')->store('public');
 
 
         $video = new Video;
@@ -98,7 +109,7 @@ class VideoController extends Controller
             'file' => 'required | mimetypes:video/x-m4v'
         ]);
 
-        $video->file = $request->file('file')->store('video-files');
+        $video->file = $request->file('file')->store('public');
         $video->title = $request->get('title');
 
         //Todo: This could be remove
