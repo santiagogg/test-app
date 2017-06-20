@@ -16,12 +16,15 @@ class MetadataForm extends Form
             ->add('location', 'select', [
                 'choices' => Location::all()->pluck('location', 'id')->toArray(),
                 'selected' => function ($data) {
-                    return $data->id;
-                }])
+
+                    return $data? $data->id: null;
+                },
+                'empty_value' => '=== Select Location ==='
+            ])
             ->add('tags', 'choice', [
                 'choices' => Keyword::all()->pluck('key', 'id')->toArray(),
                 'selected' => function ($data) {
-                    return array_pluck($data, 'id');
+                    return $data? array_pluck($data, 'id'): null;
                 },
                 'expanded' => true,
                 'multiple' => true

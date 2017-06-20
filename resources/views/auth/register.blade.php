@@ -59,6 +59,26 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="permission" class="col-md-4 control-label">Permission</label>
+
+                            <div class="col-md-6">
+                                <div class="checkbox">
+                                    <label><input name="permission[]" type="checkbox" value="play-video">Play Video</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input name="permission[]" type="checkbox" value="add-edit-video">Add/Edit Video</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input name="permission[]" type="checkbox" value="delete-video">Delete Video</label>
+                                </div>
+                            </div>
+                            @if ($errors->has('permission'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('permission') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

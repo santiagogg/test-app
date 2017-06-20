@@ -9,6 +9,15 @@ use Kris\LaravelFormBuilder\FormBuilder;
 
 class VideoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        $this->middleware('permission:play-video', ['only' => ['show']]);
+        $this->middleware('permission:add-edit-video', ['only' => ['create','store','edit','update']]);
+        $this->middleware('permission:delete-video', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +69,7 @@ class VideoController extends Controller
         //Todo: Confirm Video Type allowed
         $this->validate($request, [
             'title' => 'required',
-            'file' => 'required | mimetypes:video/mp4'
+            'file' => 'required | mimetypes:video/x-m4v'
         ]);
         $file = $request->file('file')->store('public');
 
@@ -106,10 +115,12 @@ class VideoController extends Controller
         //Todo: Confirm Video Type allowed
         $this->validate($request, [
             'title' => 'required',
-            'file' => 'required | mimetypes:video/x-m4v'
+            'file' => 'mimetypes:video/x-m4v'
         ]);
 
-        $video->file = $request->file('file')->store('public');
+        if($request->hasFile('file')) {
+            $video->file = $request->file('file')->store('public');
+        }
         $video->title = $request->get('title');
 
         //Todo: This could be remove

@@ -1,10 +1,13 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
+    <div class="container">
+        <div class="row">
+            @if(isset($formTitle))
+                <h3>{{$formTitle}}</h3>
+            @endif
 
-    @if(isset($formTitle))
-        <h3>{{$formTitle}}</h3>
-    @endif
-
-    {!! form($form) !!}
+            {!! form($form) !!}
+        </div>
+    </div>
 @endsection

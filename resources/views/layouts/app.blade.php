@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>VMS</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -28,8 +28,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{route('videos.index') }}">
+                       VMS
                     </a>
                 </div>
 
@@ -70,6 +70,14 @@
                 </div>
             </div>
         </nav>
+
+        @if(Session::has('message'))
+            <div class="container">
+                <div class="row">
+                    <p class="alert alert-info">{{ Session::get('message') }}</p>
+                </div>
+            </div>
+        @endif
 
         @yield('content')
     </div>

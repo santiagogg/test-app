@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <a href="{{route('videos.index')}}">Go To Videos</a>
                 </div>
             </div>
         </div>

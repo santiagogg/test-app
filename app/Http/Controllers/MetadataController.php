@@ -9,6 +9,11 @@ use Kris\LaravelFormBuilder\FormBuilder;
 
 class MetadataController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:add-edit-video');
+    }
 
     /**
      * Show the form for editing the Metadata.
