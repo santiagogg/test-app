@@ -9,12 +9,12 @@ class Video extends Model
     //
     public function location()
     {
-        return $this->hasOne('App\Location');
+        return $this->belongsTo('App\Location');
     }
 
-    public function keywords()
+    public function tags()
     {
-        return $this->hasMany('App\Keywords');
+        return $this->belongsToMany('App\Keyword','tags');
     }
     
     public function likes()
