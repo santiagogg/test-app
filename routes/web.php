@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::resource('videos', 'VideoController');
 Route::get('videos/{id}/metadata', 'MetadataController@edit')->name('videos.metadata.edit');
 Route::post('videos/{id}/metadata', 'MetadataController@update')->name('videos.metadata.update');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
