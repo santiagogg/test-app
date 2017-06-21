@@ -36,3 +36,15 @@ $factory->define(App\Location::class, function (Faker\Generator $faker) {
         'location' => $faker->unique()->city
     ];
 });
+
+$factory->define(App\Video::class, function (Faker\Generator $faker) {
+
+    return [
+        'title' => $faker->unique()->title,
+        'file' => 'public/GfYkqWfmAw48RnSmcVDOy0GuOSmmwgbl8DKCFmpQ.m4v',
+        'duration' => 0,
+        'file_size' => 0,
+        'video_format' => 0,
+        'bit_rate' => 0,
+    ];
+});

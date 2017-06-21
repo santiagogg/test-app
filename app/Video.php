@@ -32,4 +32,57 @@ class Video extends Model
         $this->video_format = 0;
         $this->bit_rate = 0;
     }
+
+    /**
+     * Like the current video.
+     *
+     * @return Model
+     */
+    public function like()
+    {
+
+        if (!$this->likes()->where('user_id', auth()->id())->exists()) {
+            return $this->likes()->attach(auth()->id());
+        }
+    }
+
+    /**
+     * Unlike the current video.
+     */
+    public function unlike()
+    {
+        $attributes = ['user_id' => auth()->id()];
+        $this->likes()->where($attributes)->get()->each->delete();
+    }
+
+    /**
+     * Determine if the current video has been liked.
+     *
+     * @return boolean
+     */
+    public function isLiked()
+    {
+        return !!$this->likes->where('user_id', auth()->id())->count();
+    }
+
+    /**
+     * Fetch the liked status as a property.
+     *
+     * @return bool
+     */
+    public function getIsLikedAttribute()
+    {
+        return $this->isLiked();
+    }
+
+    /**
+     * Get the number of likes for the video.
+     *
+     * @return integer
+     */
+    public function getLikesCountAttribute()
+    {
+        return $this->likes->count();
+    }
+
 }
