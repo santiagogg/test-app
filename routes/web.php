@@ -20,7 +20,7 @@ Route::resource('videos', 'VideoController');
 Route::get('videos/{id}/metadata', 'MetadataController@edit')->name('videos.metadata.edit');
 Route::post('videos/{id}/metadata', 'MetadataController@update')->name('videos.metadata.update');
 Route::post('videos/{id}/likes', 'LikesController@store')->name('videos.likes.store');
-
+Route::delete('videos/{id}/likes', 'LikesController@destroy')->name('videos.likes.delete');
 Route::get('/home', function () {
     return redirect(route('videos.index'));
 });

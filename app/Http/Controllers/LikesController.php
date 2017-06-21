@@ -21,4 +21,15 @@ class LikesController extends Controller
         $video = Video::findOrFail($id);
         return $video->like();
     }
+
+    /**
+
+     *
+     * @param $id
+     */
+    public function destroy($id)
+    {
+        $video = Video::findOrFail($id);
+        $video->unlike();
+    }
 }

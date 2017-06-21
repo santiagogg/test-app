@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     //
+
+    protected $with = ['likes'];
+    protected $appends = ['likesCount', 'isLiked'];
+
     public function location()
     {
         return $this->belongsTo('App\Location');
@@ -51,8 +55,7 @@ class Video extends Model
      */
     public function unlike()
     {
-        $attributes = ['user_id' => auth()->id()];
-        $this->likes()->where($attributes)->get()->each->delete();
+        $this->likes()->detach(auth()->id());
     }
 
     /**
@@ -62,7 +65,7 @@ class Video extends Model
      */
     public function isLiked()
     {
-        return !!$this->likes->where('user_id', auth()->id())->count();
+        return !!$this->likes()->where('user_id', auth()->id())->count();
     }
 
     /**
